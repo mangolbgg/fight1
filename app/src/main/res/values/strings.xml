@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">fight1</string>
+    <string name="email_empty_error">Email can not be empty</string>
+    <string name="email_format_error">Email format is not correct</string>
+</resources>
