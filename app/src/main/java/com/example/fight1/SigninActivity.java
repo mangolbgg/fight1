@@ -45,6 +45,5 @@ public class SigninActivity extends AppCompatActivity {
             binding.emailInPutWrong.setErrorEnabled(false);
         }
         //正确
-        //测试
     }
 }
