@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".SigninActivity"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>
