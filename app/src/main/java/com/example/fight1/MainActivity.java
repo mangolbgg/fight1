@@ -13,6 +13,9 @@ import com.example.fight1.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
  public class MainActivity extends AppCompatActivity {
 
@@ -62,5 +65,13 @@ import java.util.List;
              }
          });
 
+         Retrofit retrofit = new Retrofit.Builder()
+                 .baseUrl("https://api.openweathermap.org/data/2.5/")
+                 .addConverterFactory(GsonConverterFactory.create())
+                 .build();
+         WeatherApiInterface weatherApiInterface = retrofit.create(WeatherApiInterface.class);
+
     }
 }
+
+//https://api.openweathermap.org/data/2.5/weather?lat=-37.813629&lon=144.963058&appid=6e1414b69f791c0220f72ab0982eb365
