@@ -13,6 +13,9 @@ import com.example.fight1.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -67,9 +70,28 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
          Retrofit retrofit = new Retrofit.Builder()
                  .baseUrl("https://api.openweathermap.org/data/2.5/")
-                 .addConverterFactory(GsonConverterFactory.create())
+                 .addConverterFactory(GsonConverterFactory.create()) //转成jason格式
                  .build();
+         
          WeatherApiInterface weatherApiInterface = retrofit.create(WeatherApiInterface.class);
+
+         Call<Root> call = weatherApiInterface.getWeather();
+
+         call.enqueue(new Callback<Root>() {
+             @Override
+             public void onResponse(Call<Root> call, Response<Root> response) {
+                 Root root = response.body();
+                 double temp = root.getMain().getTemp() - 273.15;
+                 binding.tempPrintOut.setText(String.valueOf((int)temp));
+
+             }
+
+             @Override
+             public void onFailure(Call<Root> call, Throwable t) {
+                 System.out.println(t.getMessage());
+
+             }
+         });
 
     }
 }
